@@ -1,0 +1,14 @@
+Display UI
+The user will be promted to enter login details
+If the user has not registered then there will be a link where the user can register an account
+Once the user has registered/logged in they will be redirected to the to the homepage
+In the homepage the user will see a search bar as well as buttons different room categories. There will be options for suite, deluxe rooms and twin rooms.
+When the user clicks one of the categories the website/ application will filter out the our hotell rooms and display rooms of the selected category.
+When the user clicks the image of the disired rooms, they will be redirected to a page that displays more images of the rooms and more details about the room.
+they will be able to add the number of guest that will be staying and the duration of the stay.
+Once the user has added their preferences the can still browse on the application to book more rooms.
+Once they are satisfied with their rooms they can checkout by booking, trhen they will be redirected to where they have to enter payment details.
+Once they have added the payment details nd the payments are processed they will have a booking secured and get a notification of the booking via email, and on the email they will get more details about the hotel and checkins.
+For boking cancelation the user would have to navigate to the bookings page, which the link would be on the navigation bar.
+In the bookings page there will be a display of the rooms that the user has booked and a button to cancel the booking.
+once the booking is cancelled the user can only get 50% refundon the room tat they paid for.
