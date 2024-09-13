@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState, useEffect} from 'react';
 import {useNavigation, Link} from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage(){
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     function handleLogin(){
         createUserWithEmailAndPassword(auth, data.email, data.password).then(
             (response) => {
@@ -12,9 +15,9 @@ export default function LoginPage(){
     }
     return(
         <div className="login-container">
-            <div class="grid-container">
+            <div className="grid-container">
   <div className="grid-item"><img src="swimming-pool.jpg" width="450px"/></div>
-  <div classnAME="grid-item"><form>
+  <div className="grid-item"><form>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
