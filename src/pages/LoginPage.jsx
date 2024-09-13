@@ -33,7 +33,7 @@ export default function LoginPage(){
   </div>
   <button type="submit" className="btn btn-primary" onClick={handleLogin}>Submit</button>
 </form>
-<Link href="RegistrationPage">Don't have an account : Sign Up</Link></div>
+<Link to="RegistrationPage">Don't have an account : Sign Up</Link></div>
 </div>
         </div>
     )

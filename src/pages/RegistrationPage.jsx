@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function RegistrationPage(){
     const [user, setUser] = useState({

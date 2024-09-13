@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import LoginPage from './pages/LoginPage'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage'
 
 function App() {
