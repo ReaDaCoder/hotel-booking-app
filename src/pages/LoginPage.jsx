@@ -1,15 +1,20 @@
 import React from "react";
 import {useNavigation, Link} from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage(){
-    function handleLogin(event){
-        console.log(event)
+    function handleLogin(){
+        createUserWithEmailAndPassword(auth, data.email, data.password).then(
+            (response) => {
+              console.log(response.user);
+            }
+          );
     }
     return(
         <div className="login-container">
             <div class="grid-container">
   <div className="grid-item"><img src="swimming-pool.jpg" width="450px"/></div>
-  <div class="grid-item"><form>
+  <div classnAME="grid-item"><form>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
@@ -25,7 +30,7 @@ export default function LoginPage(){
   </div>
   <button type="submit" className="btn btn-primary" onClick={handleLogin}>Submit</button>
 </form>
-<a href="RegistrationPage">Don't have an account : Sign Up</a></div>
+<Link href="RegistrationPage">Don't have an account : Sign Up</Link></div>
 </div>
         </div>
     )
