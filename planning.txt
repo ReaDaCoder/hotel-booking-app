@@ -1,3 +1,4 @@
+//USER
 Display UI
 The user will be promted to enter login details
 If the user has not registered then there will be a link where the user can register an account
@@ -12,3 +13,6 @@ Once they have added the payment details nd the payments are processed they will
 For boking cancelation the user would have to navigate to the bookings page, which the link would be on the navigation bar.
 In the bookings page there will be a display of the rooms that the user has booked and a button to cancel the booking.
 once the booking is cancelled the user can only get 50% refundon the room tat they paid for.
+
+//ADMIN
+The admin will have the options to add properties on the application
