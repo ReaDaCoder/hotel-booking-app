@@ -1,47 +1,19 @@
-import React, { useState } from "react";
-import styles from './Navbar.module.css';
+import React from "react";
+import "../navbar.css";
 
-export default function Navbar() {
-  const [isActive, setIsActive] = useState(false);
-
-  const toggleActiveClass = () => {
-    setIsActive(!isActive);
-  };
-
-  const removeActive = () => {
-    setIsActive(false);
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <nav className={`${styles.navbar}`}>
-          {/* logo */}
-          <a href='#home' className={`${styles.logo}`}>Dev.</a>
-          <ul className={`${styles.navMenu} ${isActive ? styles.active : ''}`}>
-            <li onClick={removeActive}>
-              <a href='#home' className={`${styles.navLink}`}>Home</a>
-            </li>
-            <li onClick={removeActive}>
-              <a href='#catalog' className={`${styles.navLink}`}>Catalog</a>
-            </li>
-            <li onClick={removeActive}>
-              <a href='#products' className={`${styles.navLink}`}>All Products</a>
-            </li>
-            <li onClick={removeActive}>
-              <a href='#contact' className={`${styles.navLink}`}>Contact</a>
-            </li>
-          </ul>
-          <div
-            className={`${styles.hamburger} ${isActive ? styles.active : ''}`}
-            onClick={toggleActiveClass}
-          >
-            <span className={styles.bar}></span>
-            <span className={styles.bar}></span>
-            <span className={styles.bar}></span>
-          </div>
+export default function NavBar(){
+  return(
+    <div className="nav-con">
+        <nav class="navbar">
+            <img src="pulse-logo.svg" width="110"/>
+            <ul>
+                <li class="nav"><a href="/">Features</a></li>
+                <li class="nav"><a href="/">Customers Stories</a></li>
+                <li class="nav"><a href="/">Prices</a></li>
+                <li class="nav"><a href="/">Blog</a></li>
+                <li class="nav"><a href="/">Sign Up</a></li>
+            </ul>
         </nav>
-      </header>
     </div>
-  );
+  )
 }

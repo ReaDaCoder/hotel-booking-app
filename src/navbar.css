@@ -1,0 +1,27 @@
+.navbar ul{
+    list-style-type:none;
+    padding:0px;
+    margin:0px;
+   
+}
+
+.navbar a{
+    color:#00ad6a;
+    text-decoration: none;
+    padding:15px;
+    display: block;
+    text-align: center;
+}
+.navbar a:hover{
+    color: #080c16;
+}
+
+.navbar .nav{
+    float:left;
+
+}
+.nav{
+    /*position:absolute;*/
+    right:70px;
+    top:15px;
+}
