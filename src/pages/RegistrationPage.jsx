@@ -1,49 +1,27 @@
 import React, {useState, useEffect} from 'react';
+import {app} from '../firebaseConfig';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function RegistrationPage(){
-    const [user, setUser] = useState({
-        name: "",
-        surname: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    
-      const [error, setError] = useState("");
-    
-      function handleInputChange(ev) {
-        const { name, value } = ev.target;
-        setUser((prevUser) => ({
-          ...prevUser,
-          [name]: value,
-        }));
-      }
-    
-      function AddUser(ev) {
-        ev.preventDefault();
-        
-      
-        if (user.password !== user.confirmPassword) {
-          setError("Passwords do not match!");
-          return;
-        }
-        
-      
-        setError("");
-    
-    
-        console.log("User registered:", user);
-    
-        setUser({
-          name: "",
-          surname: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        });
-      }
-    
+  let auth = getAuth();
+  const [data, setData] = useState('');
+
+  function handleInput(event){
+    let newInput = {[event.target.name]: event.target.value};
+
+    setData({...data, ...newInput});
+  }
+
+  function handleSubmit(event){
+    event.preventDefault();
+    createUserWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
+      console.log("User successfully created:", response.user);
+      //console.log(response.user)
+    })
+    .catch((err) =>{
+      alert(err.message)
+    });
+  }
     return(
         <div>
             <div className="signup-box">
@@ -101,3 +79,46 @@ export default function RegistrationPage(){
         </div>
     );
 }
+
+/*const [user, setUser] = useState({
+        name: "",
+        surname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    
+      const [error, setError] = useState("");
+    
+      function handleInputChange(ev) {
+        const { name, value } = ev.target;
+        setUser((prevUser) => ({
+          ...prevUser,
+          [name]: value,
+        }));
+      }
+    
+      function AddUser(ev) {
+        ev.preventDefault();
+        
+      
+        if (user.password !== user.confirmPassword) {
+          setError("Passwords do not match!");
+          return;
+        }
+        
+      
+        setError("");
+    
+    
+        console.log("User registered:", user);
+    
+        setUser({
+          name: "",
+          surname: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+      }
+    */

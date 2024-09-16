@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigation, Link} from "react-router-dom";
 import {app} from '../firebaseConfig';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage(){
   let auth = getAuth();
@@ -13,9 +13,11 @@ export default function LoginPage(){
     setData({...data, ...newInput});
   }
 
-  function handleSubmit(){
-    createUserWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
-      console.log(response.user)
+  function handleSubmit(event){
+    event.preventDefault();
+    signInWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
+      console.log("User successfully created:", response.user);
+      //console.log(response.user)
     })
     .catch((err) =>{
       alert(err.message)
