@@ -5,7 +5,6 @@ export default function NavBar(){
   return(
     <div className="nav-con">
         <nav class="navbar">
-            <img src="pulse-logo.svg" width="110"/>
             <ul>
                 <li class="nav"><a href="/">Features</a></li>
                 <li class="nav"><a href="/">Customers Stories</a></li>

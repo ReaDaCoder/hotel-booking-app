@@ -1,11 +1,67 @@
 body{
   text-align: center;
   justify-content: center;
+
 }
 .grid-container{
   display: flex;
 }
 
+
+.grid{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.col{
+  justify-content: space-between;
+}
+
+.navbar ul{
+  list-style-type:none;
+  padding:0px;
+  margin:0px;
+ 
+}
+
+.navbar a{
+  color:#00ad6a;
+  text-decoration: none;
+  padding:15px;
+  display: block;
+  text-align: center;
+}
+.navbar a:hover{
+  color: #080c16;
+}
+
+.navbar .nav{
+  float:left;
+
+}
+.nav{
+  /*position:absolute;*/
+  right:70px;
+  top:100px;
+}
+
 .top{
-  background-image: url(oc);
+ width: 100vw;
+ height: 60vh;
+  background-image: url(/public/images/swimming-pool.jpg);
+  background-repeat: no-repeat;
+ 
+  background-size: 100vw 60vh;
+
+
+
+}
+
+.search-form{
+  top:100px;
+}
+
+footer{
+  margin-top: 200px;
 }
