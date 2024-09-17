@@ -9,10 +9,10 @@ export default function HomePage(){
             </div>
             <div className="main">
                 <div className="grid">
-                    <div className="col"><img src=""/></div>
-                    <div className="col"></div>
-                    <div className="col"></div>
-                    <div className="col"></div>
+                    <div className="col"><img src="hotel-room.jpg" width="150"/></div>
+                    <div className="col"><img src="hotel-room.jpg"width="150"/></div>
+                    <div className="col"><img src="hotel-room.jpg" width="150"/></div>
+                    <div className="col"><img src="hotel-room.jpg" width="150"/></div>
                 </div>
             </div>
         </div>
