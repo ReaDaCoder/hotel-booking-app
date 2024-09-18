@@ -27,7 +27,7 @@ export default function LoginPage(){
     return(
         <div className="login-container">
             <div className="grid-container">
-  <div className="grid-item"><img src="swimming-pool.jpg" width="450px"/></div>
+  <div className="grid-item"><img src="./images/swimming-pool.jpg" width="450px"/></div>
   <div className="grid-item"><form>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
