@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {app} from '../firebaseConfig';
+import {app, database} from '../firebaseConfig';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 export default function RegistrationPage(){
   let auth = getAuth();
   const [data, setData] = useState('');
+  const collectionRef = collection(database, 'users');
 
   function handleInput(event){
     let newInput = {[event.target.name]: event.target.value};
@@ -13,20 +15,36 @@ export default function RegistrationPage(){
   }
 
   function handleSubmit(event){
-    event.preventDefault();
-    createUserWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
-      console.log("User successfully created:", response.user);
-      //console.log(response.user)
+    // event.preventDefault();
+     //createUserWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
+    //   console.log("User successfully created:", response.user);
+    //   //console.log(response.user)})
+
+    addDoc(collectionRef, {
+      email: data.email,
+      password: data.password
+    })
+    .then(() => {
+      alert('Data Added')
     })
     .catch((err) =>{
       alert(err.message)
     });
   }
+
+  function getData(){
+    getDocs(collectionRef)
+    .then((response) => {
+      console.log(response.data.map((item) => {
+        return item.doc();
+      }))
+    })
+  }
     return(
         <div>
             <div className="signup-box">
       <h1>Sign up</h1>
-      <form onSubmit={AddUser}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
