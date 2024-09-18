@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { getStorage, ref } from "firebase/storage";
 import {app, database} from '../firebaseConfig';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import {
     CardMeta,
     CardHeader,
@@ -15,7 +16,14 @@ import {
 
 export default function AdminHomePage(){
     const storage = getStorage();
-    const [addRoom, setAddRoom] = useState('');
+    const [addRoom, setAddRoom] = useState({
+        img: "",
+        room:"",
+        description: "",
+        price: "",
+        capacity: "",
+        availability: "",
+    });
 
     return(
         <div>
@@ -28,10 +36,14 @@ export default function AdminHomePage(){
                                 <input type="file" accept="image/JPEG, image/png, image/jpg" id="input-file" />
                                 <label htmlFor="input-file" id="update-img">Add hotel room</label>
                             </div>
+                            <label for="fname">Room Type:</label><br/>
+                            <input type="text" placeholder='Enter text'value={addRoom.room}/>
                            <label for="fname">Add description:</label><br/>
                             <input type="text" placeholder='Enter text'/>
                             <label for="fname">Add Price:</label><br/>
                             <input type="number" placeholder='Enter text'/>
+                            <label for="fname">Capacity:</label><br/>
+                            <input type="text" placeholder='Enter text'/>
                             <div className="grid">
                     <div className="col"><Card>
     <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
