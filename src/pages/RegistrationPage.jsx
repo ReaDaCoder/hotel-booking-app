@@ -8,6 +8,22 @@ export default function RegistrationPage(){
   const [data, setData] = useState('');
   const collectionRef = collection(database, 'users');
 
+  const [user, setUser] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  function handleInputChange(ev) {
+    const { name, value } = ev.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  }
+
   function handleInput(event){
     let newInput = {[event.target.name]: event.target.value};
 
@@ -15,14 +31,16 @@ export default function RegistrationPage(){
   }
 
   function handleSubmit(event){
-    // event.preventDefault();
+     event.preventDefault();
      //createUserWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
     //   console.log("User successfully created:", response.user);
     //   //console.log(response.user)})
 
     addDoc(collectionRef, {
-      email: data.email,
-      password: data.password
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      password: user.password
     })
     .then(() => {
       alert('Data Added')
@@ -90,8 +108,7 @@ export default function RegistrationPage(){
                                 <input type="file" accept="image/JPEG, image/png, image/jpg" id="input-file" />
                                 <label htmlFor="input-file" id="update-img">Update</label>
                             </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Sign Up</button>
+        <button type="submit" onClick={handleSubmit}>Sign Up</button>
       </form>
     </div>
         </div>

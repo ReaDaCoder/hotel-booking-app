@@ -9,6 +9,10 @@ export default function AdminHomePage(){
                                 <input type="file" accept="image/JPEG, image/png, image/jpg" id="input-file" />
                                 <label htmlFor="input-file" id="update-img">Add hotel room</label>
                             </div>
+                            <label for="fname">Add description:</label><br/>
+                            <input type="text" placeholder='Enter text'/>
+                            <label for="fname">Add Price:</label><br/>
+                            <input type="number" placeholder='Enter text'/>
         </div>
     )
 }
