@@ -16,7 +16,8 @@ import {
 
 export default function AdminHomePage(){
     const storage = getStorage();
-    const [addRoom, setAddRoom] = useState({
+    const collectionStore = collection(database, 'rooms');
+    const [room, setRoom] = useState({
         img: "",
         room:"",
         description: "",
@@ -24,6 +25,23 @@ export default function AdminHomePage(){
         capacity: "",
         availability: "",
     });
+
+    function handleSubmit(){
+      addDoc(collectionStore, {
+        img: room.img,
+        room: room.room,
+        description:room.description, 
+        price: room.price,
+        capacity: room.capacity,
+        availability: room.availability
+      })
+      .then(()=>{
+        alert("Room added")
+      })
+      .catch((err)=>{
+        alert(err.message);
+      })
+    }
 
     return(
         <div>
@@ -33,20 +51,22 @@ export default function AdminHomePage(){
             </form>
              <div className="card">
                                 <img src="https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1" alt="User" width="150px"/>
+                                <br/>
                                 <input type="file" accept="image/JPEG, image/png, image/jpg" id="input-file" />
+                                <br/>
                                 <label htmlFor="input-file" id="update-img">Add hotel room</label>
                             </div>
                             <label for="fname">Room Type:</label><br/>
-                            <input type="text" placeholder='Enter text'value={addRoom.room}/>
+                            <input type="text" placeholder='Enter text'value={room.room}/>
                            <label for="fname">Add description:</label><br/>
-                            <input type="text" placeholder='Enter text'/>
+                            <input type="text" placeholder='Enter text'value={room.description}/>
                             <label for="fname">Add Price:</label><br/>
-                            <input type="number" placeholder='Enter text'/>
+                            <input type="number" placeholder='Enter text'value={room.price}/>
                             <label for="fname">Capacity:</label><br/>
-                            <input type="text" placeholder='Enter text'/>
+                            <input type="text" placeholder='Enter text'value={room.capacity}/>
                             <div className="grid">
                     <div className="col"><Card>
-    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' width="150" wrapped ui={false} />
     <CardContent>
       <CardHeader>Matthew</CardHeader>
       <CardMeta>
@@ -68,7 +88,7 @@ export default function AdminHomePage(){
                     <div className="col"></div>
                     <div className="col">
                     <a href="http://www.google.com">
-                    <img src="./images/arrow-icon-bg.png" />
+                    <img src="./images/arrow-icon-bg.png" width="200" />
                     </a>
                     </div>
                 </div>

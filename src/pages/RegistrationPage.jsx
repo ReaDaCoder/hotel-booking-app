@@ -102,13 +102,17 @@ export default function RegistrationPage(){
           value={user.confirmPassword}
           onChange={handleInputChange}
           required
-        /><br/>
+        />
         <div className="card">
                                 <img src="https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1" alt="User" width="150px"/>
+                                <br/>
                                 <input type="file" accept="image/JPEG, image/png, image/jpg" id="input-file" />
+                                <br/>
                                 <label htmlFor="input-file" id="update-img">Update</label>
                             </div>
+                            <br/>
         <button type="submit" onClick={handleSubmit}>Sign Up</button>
+        
       </form>
     </div>
         </div>
