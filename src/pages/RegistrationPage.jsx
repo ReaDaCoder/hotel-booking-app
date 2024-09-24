@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {app, database} from '../firebaseConfig';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 export default function RegistrationPage(){
   let auth = getAuth();
@@ -54,9 +54,14 @@ export default function RegistrationPage(){
     getDocs(collectionRef)
     .then((response) => {
       console.log(response.data.map((item) => {
-        return item.doc();
+        return {...item.data(), id: item.id};
       }))
-    })
+    });
+  }
+
+  function updateData(){
+    const docToUpdate = doc(database, "users")
+
   }
     return(
         <div>

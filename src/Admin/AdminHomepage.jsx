@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import {app, database, imageDb} from '../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
@@ -29,6 +29,35 @@ export default function AdminHomePage(){
 
     const [img, setImg] =useState('');
 
+    useEffect(() => {
+      const fetchRooms = () => {
+          getDocs(collectionStore)
+              .then((snapshot) => {
+                  const roomsArray = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                  console.log("Rooms Data:", roomsArray);
+                  setRoom(roomsArray);
+              })
+              .catch((error) => {
+                  console.error('Error fetching rooms:', error);
+              });
+      };
+      fetchRooms();
+  }, []);
+
+    // useEffect(() =>{
+    //   const roomRef = ref(database, 'users');
+    //   get(roomRef).then((snapshot) => {
+    //     if(snapshot.exists()){
+    //       const roomsArray = Object.entries(snapshot.val()).map(([id, data]) =>({
+    //         id, ...data,
+    //       }));
+    //       setRoom(roomsArray);
+    //     }
+    //   }).catch((error) =>{
+    //     console.error(error);
+    //   })
+    // }, []);
+
     function handleSubmit(event){
       event.preventDefault();
       addDoc(collectionStore, {
@@ -46,6 +75,8 @@ export default function AdminHomePage(){
         alert(err.message);
       })
     }
+
+    
 
     function handleInputChange(e) {
       const { name, value } = e.target;
@@ -84,24 +115,35 @@ export default function AdminHomePage(){
                             <button type="submit" onClick={handleSubmit}>Add Room</button>
             </form>
                             <div className="grid">
-                    {/* <div className="col"><Card>
-    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' width="150" wrapped ui={false} />
+                    <div className="col">
+                      <Card>
+                      {Object.values(room).map((value, index) => (
+    <div key={index}>
+        return(
+          <>
+          <Image src='/' wrapped ui={false} />
     <CardContent>
-      <CardHeader>Matthew</CardHeader>
+      <CardHeader>{room.room}</CardHeader>
       <CardMeta>
-        <span className='date'>Joined in 2015</span>
+        <span className='date'>{room.price}</span>
       </CardMeta>
       <CardDescription>
-        Matthew is a musician living in Nashville.
+        {room.description}
       </CardDescription>
     </CardContent>
     <CardContent extra>
       <a>
         <Icon name='user' />
-        22 Friends
+        {room.capacity}
       </a>
     </CardContent>
-  </Card></div> */}
+          </>
+        )
+    </div>
+))}
+
+  </Card>
+  </div>
                     <div className="col"></div>
                     <div className="col"></div>
                     <div className="col"></div>
