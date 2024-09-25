@@ -90,6 +90,7 @@ export default function HomePage(){
                     <img src="./images/arrow-icon-bg.png" />
                     </a>
                     </div>
+                    <button>Checkout</button>;
                 </div>
             </div>
             <footer>
