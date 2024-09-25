@@ -1,0 +1,41 @@
+initialize state for 'room' object with img, room, description, price, capacity, availability
+initialize state for 'img'
+
+use effect hook to fetch rooms from firestore collection
+  define function fetch_rooms
+    call firestore to get room documents from 'rooms' collection
+    if successful
+      map documents to an array and set room state with the array
+    if error occurs
+      log error
+
+define handle_submit function
+  prevent default form submission behavior
+  add new room document to 'rooms' collection with room state values (img, room, description, price, capacity, availability)
+  if successful
+    alert "Room added"
+  if error occurs
+    alert error message
+
+define handle_input_change function
+  get name and value from event target (input field)
+  update room state with the new value for the corresponding name field
+
+define handle_click function
+  reference a location in firebase storage
+  upload img to firebase storage
+
+return jsx structure
+  render form for searching (input and button)
+
+  render form for adding room
+    input for uploading room image
+    button for triggering image upload (calls handle_click)
+    inputs for room type, description, price, capacity (each field calls handle_input_change on change)
+    button to submit form (calls handle_submit)
+
+  render a grid for displaying room cards
+    for each value in room state object
+      render a card with image, room name, price, description, and capacity
+
+  provide a link with an image for additional functionality

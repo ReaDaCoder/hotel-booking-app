@@ -1,5 +1,8 @@
 import React from "react";
+import { useState, useEffect } from 'react';
 import Navbar from "../components/NavBar";
+import {app, database, imageDb} from '../firebaseConfig';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import {
     CardMeta,
     CardHeader,
@@ -17,6 +20,34 @@ export default function HomePage(){
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     };
+
+    const collectionStore = collection(database, 'rooms');
+
+    const [room, setRoom] = useState({
+      img: "",
+      room:"",
+      description: "",
+      price: "",
+      capacity: "",
+      availability: "",
+  });
+
+    useEffect(() => {
+      const fetchRooms = () => {
+          getDocs(collectionStore)
+              .then((snapshot) => {
+                  const roomsArray = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                  console.log("Rooms Data:", roomsArray);
+                  setRoom(roomsArray);
+              })
+              .catch((error) => {
+                  console.error('Error fetching rooms:', error);
+              });
+      };
+      fetchRooms();
+  }, []);
+
+
     return(
         <div>
             {/* <form className="search-form">
@@ -28,22 +59,28 @@ export default function HomePage(){
             <div className="main">
                 <div className="grid">
                     <div className="col"><Card>
-    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+                    {Object.values(room).map((value, index) => (
+    <div key={index}>
+          <>
+          <Image src='/' wrapped ui={false} />
     <CardContent>
-      <CardHeader>Matthew</CardHeader>
+      <CardHeader>{value.room}</CardHeader>
       <CardMeta>
-        <span className='date'>Joined in 2015</span>
+        <span className='date'>{value.price}</span>
       </CardMeta>
       <CardDescription>
-        Matthew is a musician living in Nashville.
+        {value.description}
       </CardDescription>
     </CardContent>
     <CardContent extra>
       <a>
         <Icon name='user' />
-        22 Friends
+        {value.capacity}
       </a>
     </CardContent>
+          </>
+    </div>
+))}
   </Card></div>
                     <div className="col"><img src="hotel-room.jpg"width="150"/></div>
                     <div className="col"><img src="hotel-room.jpg" width="150"/></div>

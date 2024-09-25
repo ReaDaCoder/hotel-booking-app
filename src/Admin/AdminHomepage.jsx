@@ -67,6 +67,7 @@ export default function AdminHomePage(){
         price: room.price,
         capacity: room.capacity,
         availability: room.availability
+
       })
       .then(()=>{
         alert("Room added")
@@ -86,10 +87,10 @@ export default function AdminHomePage(){
       }));
     }
 
-    function handleClick(){
-      let imgRef = ref(imageDb, 'files/${v4()}')
-      uploadBytes(imgRef,img)
-    }
+    // function handleClick(){
+    //   let imgRef = ref(imageDb, 'files/${v4()}')
+    //   uploadBytes(imgRef,img)
+    // }
 
     return(
         <div>
@@ -104,6 +105,7 @@ export default function AdminHomePage(){
                                 <br/>
                                 <button onClick={handleClick}>Add hotel img</button>
                             </div>
+                            <input type="file" onChange={(e)=>handleUpload(e)}/>
                             <label for="fname">Room Type:</label><br/>
                             <input type="text" placeholder='Enter text' name="room" value={room.room} onChange={handleInputChange}/>
                            <label for="fname">Add description:</label><br/>
@@ -119,26 +121,24 @@ export default function AdminHomePage(){
                       <Card>
                       {Object.values(room).map((value, index) => (
     <div key={index}>
-        return(
           <>
           <Image src='/' wrapped ui={false} />
     <CardContent>
-      <CardHeader>{room.room}</CardHeader>
+      <CardHeader>{value.room}</CardHeader>
       <CardMeta>
-        <span className='date'>{room.price}</span>
+        <span className='date'>{value.price}</span>
       </CardMeta>
       <CardDescription>
-        {room.description}
+        {value.description}
       </CardDescription>
     </CardContent>
     <CardContent extra>
       <a>
         <Icon name='user' />
-        {room.capacity}
+        {value.capacity}
       </a>
     </CardContent>
           </>
-        )
     </div>
 ))}
 
