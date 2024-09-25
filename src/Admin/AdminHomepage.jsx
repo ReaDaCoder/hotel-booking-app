@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import {app, database, imageDb} from '../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
-import {v4} from "uuid";
+import {v4 as uuidv4} from "uuid";
  import {
     CardMeta,
     CardHeader,
@@ -19,7 +19,7 @@ export default function AdminHomePage(){
     const storage = getStorage();
     const collectionStore = collection(database, 'rooms');
     const [room, setRoom] = useState({
-        img: "",
+        // img: "",
         room:"",
         description: "",
         price: "",
@@ -60,8 +60,9 @@ export default function AdminHomePage(){
 
     function handleSubmit(event){
       event.preventDefault();
+      console.log(room);
       addDoc(collectionStore, {
-        img: room.img,
+        // img: room.img,
         room: room.room,
         description:room.description, 
         price: room.price,
@@ -81,16 +82,25 @@ export default function AdminHomePage(){
 
     function handleInputChange(e) {
       const { name, value } = e.target;
+      console.log(value)
       setRoom(prevState => ({
           ...prevState,
           [name]: value
       }));
     }
 
-    // function handleClick(){
-    //   let imgRef = ref(imageDb, 'files/${v4()}')
-    //   uploadBytes(imgRef,img)
-    // }
+    function handleClick(){
+      let imgRef = ref(imageDb, `files/${uuidv4()}`)
+    uploadBytes(imgRef,img).then((snapshot)=>{
+      getDownloadURL(snapshot.ref).then((url)=>{
+        console.log(url)
+        setRoom(prevState => ({
+          ...prevState,
+          img: url
+      }));
+      }).catch((err)=>console.error(err))
+    }).catch((err)=>console.log(err))
+    }
 
     return(
         <div>
@@ -106,14 +116,16 @@ export default function AdminHomePage(){
                                 <button onClick={handleClick}>Add hotel img</button>
                             </div>
                             <input type="file" onChange={(e)=>handleUpload(e)}/>
-                            <label for="fname">Room Type:</label><br/>
+                            <label htmlFor="fname">Room Type:</label><br/>
                             <input type="text" placeholder='Enter text' name="room" value={room.room} onChange={handleInputChange}/>
-                           <label for="fname">Add description:</label><br/>
+                           <label htmlFor="fname">Add description:</label><br/>
                             <input type="text" placeholder='Enter text'name="description" value={room.description} onChange={handleInputChange}/>
-                            <label for="fname">Add Price:</label><br/>
+                            <label htmlFor="fname">Add Price:</label><br/>
                             <input type="number" placeholder='Enter text'name="price" value={room.price} onChange={handleInputChange}/>
-                            <label for="fname">Capacity:</label><br/>
+                            <label htmlFor="fname">Capacity:</label><br/>
                             <input type="text" placeholder='Enter text' name="capacity" value={room.capacity} onChange={handleInputChange}/>
+                            <label htmlFor="fname">Availability:</label><br/>
+                            <input type="text" placeholder='Enter text' name="availability" value={room.availability} onChange={handleInputChange}/>
                             <button type="submit" onClick={handleSubmit}>Add Room</button>
             </form>
                             <div className="grid">
