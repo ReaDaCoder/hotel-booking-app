@@ -11,7 +11,8 @@ import {
     Card,
     Icon,
     Image,
-  } from 'semantic-ui-react'
+  } from 'semantic-ui-react';
+  import {useNavigation, Link} from "react-router-dom";
 
 export default function HomePage(){
     const myStyle = {
@@ -47,6 +48,8 @@ export default function HomePage(){
       fetchRooms();
   }, []);
 
+  
+    
 
     return(
         <div>
@@ -90,7 +93,7 @@ export default function HomePage(){
                     <img src="./images/arrow-icon-bg.png" />
                     </a>
                     </div>
-                    <button>Checkout</button>;
+                    <button><Link to="PaymentPage">Don't have an account : Sign Up</Link></button>
                 </div>
             </div>
             <footer>

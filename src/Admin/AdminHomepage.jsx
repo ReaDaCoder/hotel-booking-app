@@ -89,7 +89,7 @@ export default function AdminHomePage(){
       }));
     }
 
-    function handleClick(){
+    function handleClick(e){
       let imgRef = ref(imageDb, `files/${uuidv4()}`)
     uploadBytes(imgRef,img).then((snapshot)=>{
       getDownloadURL(snapshot.ref).then((url)=>{

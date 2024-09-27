@@ -1,44 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import getStripe from './lib/getStripe';
+import { loadStripe } from "@stripe/stripe-js";
+
+const PUBLIC_KEY = "pk_test_51Q2iK8Cs3w6cneavhZNzddYb4OlcMFwAUKyLyelyLNonblhQcj3tP0A2l9hvTs6wqzwaQvrSMpCUoSuiyTc4hLO800H4J7PVm4"
+const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 export default function PaymentPage() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://js.paystack.co/v1/inline.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
-  const payWithPaystack = () => {
-    let handler = window.PaystackPop.setup({
-      key: 'your_public_key', // Replace with your Paystack public key
-      email: document.querySelector("input[name=email]").value,
-      amount: document.querySelector("input[name=amount]").value * 100, // in kobo
-      currency: "NGN",
-      ref: '' + Math.floor(Math.random() * 1000000000 + 1), // generates a random reference
-      callback: function(response) {
-        alert('Payment successful. Transaction reference: ' + response.reference);
-      },
-      onClose: function() {
-        alert('Payment window closed.');
-      }
-    });
-    handler.openIframe();
-  };
+  // const [checkoutError, setCheckoutError] = useState(null);
+
+  // async function handleCheckout() {
+  //   const stripe = await getStripe();
+  //   const { error } = await stripe.redirectToCheckout({
+  //     lineItems: [
+  //       {
+  //         price: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
+  //         quantity: 1,
+  //       },
+  //     ],
+  //     mode: 'subscription',
+  //     successUrl: `http://localhost:3000/success`,
+  //     cancelUrl: `http://localhost:3000/cancel`,
+  //     customerEmail: 'customer@email.com',
+  //   });
+  //   console.warn(error.message);
+  // }
 
   return (
-    <div>
-      <form>
-        <label>Full Name</label>
-        <input type="text" name="full_name" />
-        <label>Email</label>
-        <input type="text" name="email" />
-        <label>Amount (NGN)</label>
-        <input type="number" name="amount" placeholder="Min Amount 1000" />
-        <button type="button" onClick={payWithPaystack}>Pay</button>
-      </form>
-    </div>
+    <Elements sripe={stripeTestPromise}>
+      <PaymentsForm/>
+    </Elements>
   );
 }
+
+{/* <button onClick={handleCheckout}>Pay</button> */}
