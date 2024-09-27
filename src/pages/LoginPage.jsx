@@ -26,9 +26,14 @@ export default function LoginPage(){
 
     return(
         <div className="login-container">
+          <div className="login-heading">
+          <img src="ocean-view-bg.png" width="150px" className="logo"/><h1>The Ocean View Palace</h1>
+          </div>
             <div className="grid-container">
-  <div className="grid-item"><img src="./images/swimming-pool.jpg" width="450px"/></div>
-  <div className="grid-item"><form>
+  <div className="grid-item"><img src="./images/swimming-pool.jpg" className="login-img"/></div>
+  <div className="grid-item-details">
+    <div className="form-card">
+    <form className="login-form">
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
     <input
@@ -52,6 +57,7 @@ export default function LoginPage(){
   </div>
   <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
 </form>
+    </div>
 <Link to="RegistrationPage">Don't have an account : Sign Up</Link></div>
 </div>
         </div>

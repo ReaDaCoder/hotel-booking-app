@@ -6,6 +6,7 @@ import RegistrationPage from './pages/RegistrationPage'
 import HomePage from './pages/HomePage';
 import AdminHomePage from './Admin/AdminHomepage';
 import Payment from './pages/PaymentForm';
+import PaymentPage from './pages/PaymentPage';
 
 function App() {
   const [count, setCount] = useState(0)
