@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Navbar from "../components/NavBar";
 import {app, database, imageDb} from '../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { signOut } from "firebase/auth";
 import {
     CardMeta,
     CardHeader,
@@ -48,6 +49,10 @@ export default function HomePage(){
       fetchRooms();
   }, []);
 
+  function Signout(){
+    signOut();
+  }
+
   
     
 
@@ -85,9 +90,9 @@ export default function HomePage(){
     </div>
 ))}
   </Card></div>
-                    <div className="col"><img src="hotel-room.jpg"width="150"/></div>
+                    {/* <div className="col"><img src="hotel-room.jpg"width="150"/></div>
                     <div className="col"><img src="hotel-room.jpg" width="150"/></div>
-                    <div className="col"><img src="hotel-room.jpg" width="150"/></div>
+                    <div className="col"><img src="hotel-room.jpg" width="150"/></div> */}
                     <div className="col">
                     <a href="http://www.google.com">
                     <img src="./images/arrow-icon-bg.png" />
@@ -102,6 +107,7 @@ export default function HomePage(){
                     <li>Email: theoceanviewpalace@gmail.com</li>
                     <li>Call: 087 043 9576</li>
                 </ul>
+                <button>Sign Out</button>
             </footer>
         </div>
     )

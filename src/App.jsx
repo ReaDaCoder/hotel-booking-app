@@ -1,42 +1,50 @@
 import { useState } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, RouterProvider, createBrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage'
 import HomePage from './pages/HomePage';
 import AdminHomePage from './Admin/AdminHomepage';
 import Payment from './pages/PaymentForm';
 import PaymentPage from './pages/PaymentPage';
+import { AuthContext } from './utils/Auth';
+import { Protected } from './pages/Protected';
 
 function App() {
   const [count, setCount] = useState(0)
-  // const router = createBrowserRouter([
-  //   {
-  //     path:"/",
-  //     element:<HomePage></HomePage>
-  //   },
-  //   {
-  //     path:"/",
-  //     element:<HomePage></HomePage>
-  //   },
-  //   {
-  //     path:"/",
-  //     element:<HomePage></HomePage>
-  //   }
-  // ])
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <LoginPage />,
+    },
+    {
+      path: '/RegistrationPage',
+      element: <RegistrationPage />,
+    },
+    {
+      path: '/HomePage',
+      element: <Protected><HomePage /></Protected>,
+    },
+    {
+      path: '/PaymentPage',
+      element: <PaymentPage />,
+    },
+    {
+      path: '/AdminHomePage',
+      element: <Protected><AdminHomePage /></Protected>,
+    },
+    {
+      path: '/PaymentForm',
+      element: <Payment />,
+    },
+  ]);
 
   return (
     <>
-    <BrowserRouter>
-    <Routes>
-      < Route exact path="/" element={<LoginPage/>}/>
-      <Route path="/RegistrationPage" element={<RegistrationPage/>}/>
-      <Route path="/HomePage" element={<HomePage/>}/>
-      <Route path="/PaymentPage" element={<PaymentPage/>} />
-      <Route path="/AdminHomePage" element={<AdminHomePage/>}/>
-      <Route path="/PaymentForm" element={<Payment/>}/>
-    </Routes>
-    </BrowserRouter>
+    <AuthContext>
+    <RouterProvider router={router} />
+    </AuthContext>
     </>
   )
 }
