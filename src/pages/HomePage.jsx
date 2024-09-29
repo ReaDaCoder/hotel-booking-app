@@ -93,7 +93,7 @@ export default function HomePage(){
                     <img src="./images/arrow-icon-bg.png" />
                     </a>
                     </div>
-                    <button><Link to="PaymentPage">Don't have an account : Sign Up</Link></button>
+                    {/* <button><Link to="PaymentPage">Don't have an account : Sign Up</Link></button> */}
                 </div>
             </div>
             <footer>

@@ -88,6 +88,10 @@ width: 400px;
 
 input{
   margin-top: 25px;
+  padding: 16px;
+  border-radius: 11px;
+  border:none;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .form-card{
@@ -104,4 +108,12 @@ input{
 
 h1{
   color: #082861;
+}
+
+.signup-box{
+  border-radius: 13px;
+  background-color: #ffff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  height: 450px;
+  width: 500px;
 }

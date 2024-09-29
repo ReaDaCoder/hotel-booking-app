@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {useNavigation, Link} from "react-router-dom";
+import {useNavigation, useNavigate, Link} from "react-router-dom";
 import {app, database} from '../firebaseConfig';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage(){
   let auth = getAuth();
   const [data, setData] = useState('');
+  const navigate = useNavigate();
+  
 
   function handleInput(event){
     let newInput = {[event.target.name]: event.target.value};
@@ -16,7 +18,8 @@ export default function LoginPage(){
   function handleSubmit(event){
     event.preventDefault();
     signInWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
-      console.log("User successfully created:", response.user);
+      console.log("User successfully logged in:", response.user);
+      navigate('/HomePage');
       //console.log(response.user)
     })
     .catch((err) =>{
@@ -58,7 +61,8 @@ export default function LoginPage(){
   <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
 </form>
     </div>
-<Link to="RegistrationPage">Don't have an account : Sign Up</Link></div>
+{/* <Link to="RegistrationPage">Don't have an account : Sign Up</Link> */}
+</div>
 </div>
         </div>
     )

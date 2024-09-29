@@ -10,6 +10,20 @@ import PaymentPage from './pages/PaymentPage';
 
 function App() {
   const [count, setCount] = useState(0)
+  // const router = createBrowserRouter([
+  //   {
+  //     path:"/",
+  //     element:<HomePage></HomePage>
+  //   },
+  //   {
+  //     path:"/",
+  //     element:<HomePage></HomePage>
+  //   },
+  //   {
+  //     path:"/",
+  //     element:<HomePage></HomePage>
+  //   }
+  // ])
 
   return (
     <>

@@ -32,9 +32,10 @@ export default function RegistrationPage(){
 
   function handleSubmit(event){
      event.preventDefault();
-     //createUserWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
-    //   console.log("User successfully created:", response.user);
-    //   //console.log(response.user)})
+     createUserWithEmailAndPassword(auth, data.email, data.password).then((response) =>{
+      console.log("User successfully created:", response.user);
+    
+    })
 
     addDoc(collectionRef, {
       name: user.name,
@@ -65,8 +66,8 @@ export default function RegistrationPage(){
   }
     return(
         <div>
+          <h1>Sign up</h1>
             <div className="signup-box">
-      <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -109,7 +110,7 @@ export default function RegistrationPage(){
           required
         />
         <div className="card">
-                                <img src="https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1" alt="User" width="150px"/>
+                                <img src="https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1" alt="User" width="100px"/>
                                 <br/>
                                 <input type="file" accept="image/JPEG, image/png, image/jpg" id="input-file" />
                                 <br/>
