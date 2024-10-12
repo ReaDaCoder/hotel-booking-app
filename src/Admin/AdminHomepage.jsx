@@ -102,6 +102,15 @@ export default function AdminHomePage(){
     }).catch((err)=>console.log(err))
     }
 
+    // const handleUpload = (e) =>{
+    //   const imgs = ref(imgDB, `Imgs/${v4()}`)
+    //   uploadBytes(imgs,e.target.files[0]).then(data=>{
+    //     getDownloadURL(data.ref).then(val=>{
+    //       setImg(val)
+    //     })
+    //   })
+    // }
+
     return(
         <div>
             <form>
