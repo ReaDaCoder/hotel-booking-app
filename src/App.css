@@ -54,11 +54,7 @@ body{
  height: 60vh;
   background-image: url(/public/images/swimming-pool.jpg);
   background-repeat: no-repeat;
- 
   background-size: 100vw 60vh;
-
-
-
 }
 
 .search-form{
@@ -83,7 +79,7 @@ width: 400px;
 }
 
 .login-form{
-  padding: 150px;
+  padding: 100px;
 }
 
 input{
@@ -100,6 +96,15 @@ input{
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   height: 450px;
   width: 500px;
+}
+
+.link-card{
+  margin-top: 10px;
+}
+
+.login-btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .logo{
