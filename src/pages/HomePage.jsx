@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/NavBar";
 import { app, database } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { signOut } from "firebase/auth";
@@ -14,6 +13,7 @@ import {
   CardDescription,
 } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
+import NavBar from '../components/NavBar';
 
 
 export default function HomePage() {
@@ -53,7 +53,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <div className="top"></div>
+      <div className="top"><NavBar/></div>
       <div className="main">
         <div className="grid">
           {rooms.map((room) => (
