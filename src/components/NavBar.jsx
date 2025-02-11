@@ -5,11 +5,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function NavBar() {
+function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand href="#"><img src="/public/images/ocean-view-bg.png" className="logo" width="150" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -48,24 +48,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
-
-
-// import React from "react";
-// import "../navbar.css";
-
-// export default function NavBar(){
-//   return(
-//     <div className="nav-con">
-//         <nav class="navbar">
-//             <ul>
-//                 <li class="nav"><a href="/">Features</a></li>
-//                 <li class="nav"><a href="/">Customers Stories</a></li>
-//                 <li class="nav"><a href="/">Prices</a></li>
-//                 <li class="nav"><a href="/">Blog</a></li>
-//                 <li class="nav"><a href="/">Sign Up</a></li>
-//             </ul>
-//         </nav>
-//     </div>
-//   )
-//}
+export default NavScrollExample;

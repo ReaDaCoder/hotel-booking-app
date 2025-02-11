@@ -52,7 +52,7 @@ body{
 .top{
  width: 100vw;
  height: 60vh;
-  background-image: url(/public/images/swimming-pool.jpg);
+  background-image: url(/public/images/pool-overview.png);
   background-repeat: no-repeat;
   background-size: 100vw 60vh;
 }

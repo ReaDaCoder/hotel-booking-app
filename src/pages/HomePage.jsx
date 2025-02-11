@@ -18,9 +18,10 @@ import NavBar from '../components/NavBar';
 
 export default function HomePage() {
   const myStyle = {
-    backgroundImage: "url('./images/swimming-pool.jpg')",
+    backgroundImage: "url('/public/images/pool-overview.png')",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
+    position: "absolute",
   };
 
   const collectionStore = collection(database, "rooms");
@@ -53,6 +54,7 @@ export default function HomePage() {
 
   return (
     <div>
+    <h1>Ocean view Palace</h1>
       <div className="top"><NavBar/></div>
       <div className="main">
         <div className="grid">
