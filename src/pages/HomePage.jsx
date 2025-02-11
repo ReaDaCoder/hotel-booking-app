@@ -54,8 +54,13 @@ export default function HomePage() {
 
   return (
     <div>
-    <h1>Ocean view Palace</h1>
-      <div className="top"><NavBar/></div>
+      <div className="top">
+      <h1>Ocean view Palace</h1>
+        <div classNamr="in-top">
+        <h2 className="scnd-heading">Where do you want to stay?</h2>
+        <NavBar/>
+        </div>
+        </div>
       <div className="main">
         <div className="grid">
           {rooms.map((room) => (

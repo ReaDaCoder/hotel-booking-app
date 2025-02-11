@@ -4,10 +4,12 @@
 body{
   text-align: center;
   justify-content: center;
-
+  background-color:  #A7D0EA;
+  /* background-image: url(/public/images/water-gradient.jpeg); */
 }
 .grid-container{
   display: flex;
+  gap: 15px;
 }
 
 
@@ -55,10 +57,36 @@ body{
   background-image: url(/public/images/pool-overview.png);
   background-repeat: no-repeat;
   background-size: 100vw 60vh;
+  margin-bottom: 50px;
+}
+
+.main{
+  width: 100%;
+  margin-top: 50px;
 }
 
 .search-form{
   top:100px;
+}
+
+.scnd-heading{
+  font-weight: 800;
+}
+
+h1{
+  margin-bottom: 50px;
+  font-weight: 800;
+}
+
+.in-top{
+  margin-top: 200px;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 footer{
@@ -113,6 +141,10 @@ input{
 
 h1{
   color: #082861;
+}
+
+ul{
+  list-style: none
 }
 
 .signup-box{
