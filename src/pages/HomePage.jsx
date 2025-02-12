@@ -54,7 +54,9 @@ export default function HomePage() {
   return (
     <div>
       <div className="top">
-        <h1>Ocean view Palace</h1>
+      <div className="home-heading">
+        <div className="text"><h1>The Ocean View Palace</h1></div>
+      </div>
         <div classNamr="in-top">
           <h2 className="scnd-heading">Where do you want to stay?</h2>
           <NavBar />
@@ -70,6 +72,7 @@ export default function HomePage() {
                   wrapped
                   ui={false}
                   alt="Room"
+                  width="150"
                 />
                 <CardContent>
                   <CardHeader>{room.room}</CardHeader>

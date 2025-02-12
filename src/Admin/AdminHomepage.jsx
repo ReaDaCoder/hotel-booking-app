@@ -151,6 +151,7 @@ export default function RoomForm() {
                       wrapped
                       ui={false}
                       alt="Room"
+                      width="150"
                     />
                     <CardContent>
                       <CardHeader>{room.room}</CardHeader>
