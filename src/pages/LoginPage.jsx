@@ -30,7 +30,7 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-heading">
-        <img src="ocean-view-bg.png" width="150px" className="logo" />
+        <img src="/public/images/ocean-view-bg.png" width="150px" className="logo" />
         <h1>The Ocean View Palace</h1>
       </div>
       <div className="grid-container">

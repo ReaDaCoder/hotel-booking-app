@@ -1,7 +1,17 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
+import {
+  Card,
+  Icon,
+  Image,
+  Button,
+  CardContent,
+  CardHeader,
+  CardMeta,
+  CardDescription,
+} from "semantic-ui-react";
 
 
 const storage = getStorage();
@@ -17,7 +27,8 @@ export default function RoomForm() {
     availability: "",
   });
 
-  const [img, setImg] = useState(null); 
+  const [rooms, setRooms] = useState([]);
+  const [img, setImg] = useState(null);
 
   
   useEffect(() => {
@@ -28,6 +39,7 @@ export default function RoomForm() {
           id: doc.id,
           ...doc.data(),
         }));
+        setRooms(roomsArray);
         console.log("Rooms Data:", roomsArray);
       } catch (error) {
         console.error("Error fetching rooms:", error);
@@ -36,7 +48,7 @@ export default function RoomForm() {
     fetchRooms();
   }, []);
 
-  // Handle input change for room details
+  
   function handleInputChange(e) {
     const { name, value } = e.target;
     setRoom((prevState) => ({
@@ -45,7 +57,7 @@ export default function RoomForm() {
     }));
   }
 
-  // Handle image selection
+  
   function handleImageChange(e) {
     const file = e.target.files[0];
     if (file) {
@@ -53,33 +65,33 @@ export default function RoomForm() {
     }
   }
 
-  // Upload image & save room data
+  
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
       let imageUrl = "";
 
-      // If an image is selected, upload it
+      
       if (img) {
         const imgRef = ref(storage, `rooms/${uuidv4()}`);
         const snapshot = await uploadBytes(imgRef, img);
         imageUrl = await getDownloadURL(snapshot.ref);
       }
 
-      // Add room details including the image URL to Firestore
+      
       await addDoc(collectionStore, {
         room: room.room,
         description: room.description,
         price: room.price,
         capacity: room.capacity,
         availability: room.availability,
-        img: imageUrl, // Store the image URL in Firestore
+        img: imageUrl, 
       });
 
       alert("Room added successfully!");
 
-      // Reset form
+      
       setRoom({
         room: "",
         description: "",
@@ -88,14 +100,35 @@ export default function RoomForm() {
         availability: "",
       });
       setImg(null);
+
+      const snapshot = await getDocs(collectionStore);
+      setRooms(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     } catch (error) {
       console.error("Error adding room:", error);
       alert(error.message);
     }
   }
 
+  async function deleteRoom(id) {
+    try {
+      const roomRef = doc(collectionStore, id); // Reference to the document
+      await deleteDoc(roomRef); // Delete the document
+  
+      alert("Room deleted successfully!");
+      fetchRooms(); // Refresh the rooms list
+    } catch (error) {
+      console.error("Error deleting room:", error);
+      alert("Unable to delete room");
+    }
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <>
+    <div className="admin-heading">
+        <img src="/public/images/ocean-view-bg.png" width="150px" className="logo" />
+        <h1>The Ocean View Palace</h1>
+      </div>
+     <form onSubmit={handleSubmit}>
       <input type="text" name="room" placeholder="Room Name" value={room.room} onChange={handleInputChange} required />
       <input type="text" name="description" placeholder="Description" value={room.description} onChange={handleInputChange} required />
       <input type="number" name="price" placeholder="Price" value={room.price} onChange={handleInputChange} required />
@@ -108,6 +141,45 @@ export default function RoomForm() {
       <input type="file" accept="image/*" onChange={handleImageChange} required />
       <button type="submit">Add Room</button>
     </form>
+    <div className="main">
+            <div className="grid">
+              {rooms.map((room) => (
+                <div className="col" key={room.id}>
+                  <Card>
+                    <Image
+                      src={room.img || "./images/default-room.jpg"}
+                      wrapped
+                      ui={false}
+                      alt="Room"
+                    />
+                    <CardContent>
+                      <CardHeader>{room.room}</CardHeader>
+                      <CardMeta>
+                        <span className="date">${room.price} per night</span>
+                      </CardMeta>
+                      <CardDescription>{room.description}</CardDescription>
+                    </CardContent>
+                    <CardContent extra>
+                      <a>
+                        <Icon name="user" />
+                        Capacity: {room.capacity}
+                      </a>
+                      <span style={{ marginLeft: "10px" }}>
+                        {room.availability ? "Available" : "Not Available"}
+                      </span>
+                    </CardContent>
+                    <Button
+                    onClick={() =>deleteRoom(room.id)}
+                    >
+                      Delete
+                    </Button>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+    </>
+    
   );
 }
 

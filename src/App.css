@@ -78,6 +78,10 @@ h1{
   font-weight: 800;
 }
 
+.admin-heading{
+  margin-top: 0;
+}
+
 .in-top{
   margin-top: 200px;
   /* From https://css.glass */

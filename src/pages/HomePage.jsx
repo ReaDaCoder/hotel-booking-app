@@ -13,8 +13,7 @@ import {
   CardDescription,
 } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
-import NavBar from '../components/NavBar';
-
+import NavBar from "../components/NavBar";
 
 export default function HomePage() {
   const myStyle = {
@@ -55,12 +54,12 @@ export default function HomePage() {
   return (
     <div>
       <div className="top">
-      <h1>Ocean view Palace</h1>
+        <h1>Ocean view Palace</h1>
         <div classNamr="in-top">
-        <h2 className="scnd-heading">Where do you want to stay?</h2>
-        <NavBar/>
+          <h2 className="scnd-heading">Where do you want to stay?</h2>
+          <NavBar />
         </div>
-        </div>
+      </div>
       <div className="main">
         <div className="grid">
           {rooms.map((room) => (
@@ -89,12 +88,12 @@ export default function HomePage() {
                   </span>
                 </CardContent>
                 <Button
-  color="blue"
-  onClick={() => handleBooking(room.id)} 
-  disabled={!room.availability} 
->
-  Book Now
-</Button>
+                  color="blue"
+                  onClick={() => handleBooking(room.id)}
+                  disabled={!room.availability}
+                >
+                  Book Now
+                </Button>
               </Card>
             </div>
           ))}
@@ -113,12 +112,6 @@ export default function HomePage() {
     </div>
   );
 }
-
-
-
-
-
-
 
 // import React from "react";
 // import { useState, useEffect } from 'react';
@@ -174,9 +167,6 @@ export default function HomePage() {
 //   function Signout(){
 //     signOut();
 //   }
-
-  
-    
 
 //     return(
 //         <div>
