@@ -48,7 +48,7 @@ export default function HomePage() {
 
   const handleBooking = (roomId) => {
     //alert(`Room ${roomId} booked successfully!`);
-    navigate("/PaymentPage", { state: { roomId } });
+    navigate("/PaymentForm", { state: { roomId } });
   };
 
   return (

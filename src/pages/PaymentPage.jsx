@@ -1,37 +1,53 @@
-import React, { useState,useEffect } from "react";
-import { Elements } from "@stripe/react-stripe-js";
-import getStripe from './lib/getStripe';
-import { loadStripe } from "@stripe/stripe-js";
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
-const PUBLIC_KEY = "pk_test_51Q2iK8Cs3w6cneavhZNzddYb4OlcMFwAUKyLyelyLNonblhQcj3tP0A2l9hvTs6wqzwaQvrSMpCUoSuiyTc4hLO800H4J7PVm4"
-const stripeTestPromise = loadStripe(PUBLIC_KEY);
+const ProductDisplay = () => (
+  <section>
+    <div className="product">
+      <img
+        src="https://i.imgur.com/EHyR2nP.png"
+        alt="The cover of Stubborn Attachments"
+      />
+      <div className="description">
+      <h3>Stubborn Attachments</h3>
+      <h5>$20.00</h5>
+      </div>
+    </div>
+    <form action="/create-checkout-session" method="POST">
+      <button type="submit">
+        Checkout
+      </button>
+    </form>
+  </section>
+);
 
-export default function PaymentPage() {
+const Message = ({ message }) => (
+  <section>
+    <p>{message}</p>
+  </section>
+);
 
-  // const [checkoutError, setCheckoutError] = useState(null);
+export default function App() {
+  const [message, setMessage] = useState("");
 
-  // async function handleCheckout() {
-  //   const stripe = await getStripe();
-  //   const { error } = await stripe.redirectToCheckout({
-  //     lineItems: [
-  //       {
-  //         price: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
-  //         quantity: 1,
-  //       },
-  //     ],
-  //     mode: 'subscription',
-  //     successUrl: `http://localhost:3000/success`,
-  //     cancelUrl: `http://localhost:3000/cancel`,
-  //     customerEmail: 'customer@email.com',
-  //   });
-  //   console.warn(error.message);
-  // }
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
 
-  return (
-    <Elements sripe={stripeTestPromise}>
-      <PaymentsForm/>
-    </Elements>
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
+    }
+
+    if (query.get("canceled")) {
+      setMessage(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
+  }, []);
+
+  return message ? (
+    <Message message={message} />
+  ) : (
+    <ProductDisplay />
   );
 }
-
-{/* <button onClick={handleCheckout}>Pay</button> */}
