@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import "./App.css"
 import { BrowserRouter, RouterProvider, createBrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage'
 import HomePage from './pages/HomePage';
 import AdminHomePage from './Admin/AdminHomepage';
-import Payment from './pages/PaymentForm';
-import PaymentPage from './pages/PaymentPage';
+import PaymentPage from './PaymenyGateway/PaymentPage';
 import { AuthContext } from './utils/Auth';
 import { Protected } from './pages/Protected';
+import SuccessPage from './PaymenyGateway/successPage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,12 +31,12 @@ function App() {
       element: <PaymentPage />,
     },
     {
-      path: '/AdminHomePage',
-      element: <Protected><AdminHomePage /></Protected>,
+      path: '/successPage',
+      element: <SuccessPage />,
     },
     {
-      path: '/PaymentForm',
-      element: <Payment />,
+      path: '/AdminHomePage',
+      element: <Protected><AdminHomePage /></Protected>,
     },
   ]);
 
